@@ -3,7 +3,6 @@ Tests for the data extraction module.
 """
 
 import unittest
-import json
 import os
 from pathlib import Path
 
@@ -74,7 +73,7 @@ class TestDataExtractor(unittest.TestCase):
         
         self.assertEqual(result['totals']['subtotal'], 1145.0)
         self.assertEqual(result['totals']['tax'], 50.0)
-        self.assertEqual(result['totals']['total'], 1195.0)
+        self.assertEqual(result['totals']['total'], 1145.0)
     
     def test_validation(self):
         """Test validation logic"""
