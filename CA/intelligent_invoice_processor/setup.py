@@ -14,7 +14,7 @@ setup(
     description="An intelligent OCR and ML-based invoice processing system",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/intelligent-invoice-processor",
+    url="https://github.com/Shoban-Ravichandran-23272040/IAPA_CA",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
