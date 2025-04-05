@@ -9,8 +9,8 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="intelligent-invoice-processor",
     version="0.1.0",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Shoban Ravichandran",
+    author_email="x23272040@student.ncirl.ie",
     description="An intelligent OCR and ML-based invoice processing system",
     long_description=long_description,
     long_description_content_type="text/markdown",
