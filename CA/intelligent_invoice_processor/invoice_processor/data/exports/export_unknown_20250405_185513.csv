@@ -1,0 +1,2 @@
+InvoiceNumber,Vendor,Date,DueDate,PONumber,TotalAmount,Status,ConfidenceScore
+,Fast Retail Corp.,,,,0,Manual Processing Required,0.0

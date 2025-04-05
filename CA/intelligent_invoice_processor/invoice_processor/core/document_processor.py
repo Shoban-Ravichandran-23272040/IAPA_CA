@@ -61,48 +61,51 @@ def extract_text_from_invoice(pdf_path):
     """
     app_logger.info(f"Extracting text from PDF: {pdf_path}")
     try:
-        # Verify file exists
-        if not os.path.exists(pdf_path):
-            app_logger.error(f"PDF file not found: {pdf_path}")
-            return {'text': "", 'images': [], 'preprocessed_images': []}
-        
         # Convert PDF to high-quality images
-        app_logger.debug(f"Converting PDF to images with DPI: {OCR_DPI}")
         images = convert_from_path(
             pdf_path,
             poppler_path=POPPLER_PATH,
-            dpi=OCR_DPI
+            dpi=300
         )
         
-        app_logger.debug(f"PDF converted to {len(images)} image(s)")
+        if not images:
+            print("Warning: No images extracted from PDF")
+            return {'text': "", 'images': [], 'preprocessed_images': []}
         
         extracted_text = ""
         preprocessed_images = []
         
-        for i, img in enumerate(images):
-            app_logger.debug(f"Processing page {i+1}")
-            # Apply preprocessing
-            processed_img = preprocess_image(img)
-            preprocessed_images.append(processed_img)
-            
-            # Perform OCR with improved configuration
-            page_text = pytesseract.image_to_string(
-                processed_img,
-                lang=OCR_LANG,
-                config=OCR_CONFIG + ' -c tessedit_char_whitelist="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:/\\-$ "'
-            )
-            
-            extracted_text += page_text
-            app_logger.debug(f"Page {i+1} text extracted ({len(page_text)} characters)")
+        for img in images:
+            try:
+                # Apply preprocessing
+                processed_img = preprocess_image(img)
+                preprocessed_images.append(processed_img)
+                
+                # Perform OCR with improved configuration
+                text = pytesseract.image_to_string(
+                    processed_img,
+                    lang='eng',
+                    config='--psm 6 --oem 3'
+                )
+                
+                # Clean up extracted text to avoid JSON parsing issues
+                text = text.replace('"', '"').replace('"', '"')  # Normalize quotes
+                text = ''.join(c if ord(c) < 128 else ' ' for c in text)  # Remove non-ASCII chars
+                
+                extracted_text += text
+            except Exception as e:
+                print(f"Error processing an image: {str(e)}")
+                continue
         
-        app_logger.info(f"Text extraction complete ({len(extracted_text)} characters)")
         return {
             'text': extracted_text,
             'images': images,
             'preprocessed_images': preprocessed_images
         }
     except Exception as e:
-        app_logger.error(f"Error in text extraction: {str(e)}")
+        print(f"Error in extraction: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return {'text': "", 'images': [], 'preprocessed_images': []}
 
 def preview_invoice(pdf_path, page=1, dpi=150):

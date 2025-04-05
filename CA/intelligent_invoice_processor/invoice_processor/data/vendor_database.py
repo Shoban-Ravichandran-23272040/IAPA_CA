@@ -30,6 +30,12 @@ VENDOR_DATABASE = {
         "tax_id": "FR654321987",
         "payment_terms": "2/10 Net 30",
         "typical_items": ["furniture", "office supplies", "cleaning supplies", "break room items"]
+    },
+    "Anthropic, PBC": {
+        "address": "548 Market Street",
+        "tax_id": "PMB 90375",
+        "payment_terms": "2/10 Net 30",
+        "typical_items": ["software license"]
     }
 }
 

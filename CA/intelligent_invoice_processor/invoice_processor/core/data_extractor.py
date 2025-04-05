@@ -13,6 +13,101 @@ from invoice_processor.data.vendor_database import VENDOR_DATABASE
 from invoice_processor.logger import app_logger
 from invoice_processor.config import ML_CONFIDENCE_THRESHOLD
 
+def extract_line_items(lines, start_line, end_line, app_logger):
+    """
+    Extract line items from invoice text with robust parsing
+    
+    Args:
+        lines (list): Lines of text to parse
+        start_line (int): Starting line number for item extraction
+        end_line (int): Ending line number for item extraction
+        app_logger (Logger): Logger for tracking extraction process
+    
+    Returns:
+        list: Extracted line items
+    """
+    items = []
+    
+    # Comprehensive regex patterns for item extraction
+    item_patterns = [
+        # Most flexible pattern - handles multiple spacing, currency symbols, decimal formats
+        r'^([A-Za-z0-9\s\-\(\)/&]+?)[\s\t]{1,}(\d+)[\s\t]{1,}[€$]?([\d.,]+)[\s\t]{1,}[€$]?([\d.,]+)$',
+        
+        # Pattern with stricter whitespace matching
+        r'^([A-Za-z0-9\s\-\(\)/&]+)\s+(\d+)\s+[€$]?([\d.,]+)\s+[€$]?([\d.,]+)$',
+        
+        # Extra pattern for tighter matching
+        r'^(.*?)\s{2,}(\d+)\s{2,}[€$]?([\d.,]+)\s{2,}[€$]?([\d.,]+)$'
+    ]
+    
+    app_logger.debug(f"Extracting items from lines {start_line} to {end_line}")
+    
+    for i in range(start_line, end_line):
+        line = lines[i].strip()
+        if not line:
+            continue
+        
+        matched = False
+        for pattern in item_patterns:
+            match = re.match(pattern, line, re.UNICODE)
+            if match:
+                try:
+                    # Extract and clean the matched groups
+                    item_description = match.group(1).strip()
+                    
+                    # Validate and parse quantity
+                    try:
+                        quantity = int(match.group(2).strip())
+                    except ValueError:
+                        app_logger.warning(f"Invalid quantity in line: {line}")
+                        continue
+                    
+                    # Handle different decimal formats (. or ,)
+                    def parse_decimal(value):
+                        try:
+                            # Remove currency symbols, spaces, and replace comma with dot
+                            cleaned = value.replace('€', '').replace('$', '').replace(' ', '').replace(',', '.')
+                            return float(cleaned)
+                        except (ValueError, TypeError):
+                            app_logger.warning(f"Could not parse decimal value: {value}")
+                            return None
+                    
+                    unit_price = parse_decimal(match.group(3))
+                    total_price = parse_decimal(match.group(4))
+                    
+                    # Skip if parsing fails
+                    if unit_price is None or total_price is None:
+                        continue
+                    
+                    # Validate total price calculation (with small tolerance)
+                    calculated_total = round(quantity * unit_price, 2)
+                    if abs(calculated_total - total_price) > 0.02:
+                        app_logger.warning(f"Possible price calculation discrepancy: "
+                                           f"Calculated {calculated_total}, Given {total_price}")
+                    
+                    new_item = {
+                        "description": item_description,
+                        "quantity": quantity,
+                        "unit_price": unit_price,
+                        "total": total_price
+                    }
+                    
+                    items.append(new_item)
+                    app_logger.debug(f"Extracted item: {new_item}")
+                    matched = True
+                    break
+                
+                except Exception as e:
+                    app_logger.warning(f"Error processing line '{line}': {e}")
+                    continue
+        
+        # If no pattern matched, log the line for debugging
+        if not matched and line.strip():
+            app_logger.warning(f"Could not extract item from line: '{line}'")
+    
+    app_logger.info(f"Extracted {len(items)} line items")
+    return items
+
 def parse_invoice_text(text, vendor_classifier=None):
     """
     Extract structured data from invoice text with validation and confidence scoring
@@ -55,6 +150,16 @@ def parse_invoice_text(text, vendor_classifier=None):
             "status": "Pending Review"
         }
     }
+    # Add this debug section to see what's being extracted
+    print("===== RAW EXTRACTED TEXT =====")
+    print(text)
+    print("=============================")
+        
+    # Add a safety check for empty or very short text
+    if not text or len(text) < 50:
+        result["validation"]["warnings"].append("Insufficient text extracted from invoice")
+        result["validation"]["status"] = "Manual Processing Required"
+        return result
     
     # More sophisticated regex patterns for various invoice fields
     patterns = {
@@ -140,12 +245,23 @@ def parse_invoice_text(text, vendor_classifier=None):
                 if not line:
                     continue
                 
-                # Try various item line formats
+                # Try various item line formats with more flexible matching
                 patterns = [
-                    r'([A-Za-z0-9\s\-]+)[\s\t]+(\d+)[\s\t]+([\d.,]+)[\s\t]+([\d.,]+)',  # Standard format
-                    r'([A-Za-z0-9\s\-]+)[\s\t]+(\d+)[\s\t]+\$([\d.,]+)[\s\t]+\$([\d.,]+)'  # With currency symbols
+                    # Standard format with flexible whitespace and optional currency symbols
+                    r'([A-Za-z0-9\s\-\(\)]+)[\s\t]+(\d+)[\s\t]+[€$]?([\d.,]+)[\s\t]+[€$]?([\d.,]+)',
+                    # Format specifically for Euro currency with flexible whitespace
+                    r'([A-Za-z0-9\s\-\(\)]+)[\s\t]+(\d+)[\s\t]+€([\d.,]+)[\s\t]+€([\d.,]+)',
+                    # Extra flexible pattern to catch more variations
+                    r'([A-Za-z0-9\s\-\(\)]+?)[\s\t]{2,}(\d+)[\s\t]{2,}[€$]?([\d.,]+)[\s\t]{2,}[€$]?([\d.,]+)',
+                    # Most flexible pattern - handles multiple spacing, currency symbols, decimal formats
+                    r'^([A-Za-z0-9\s\-\(\)/&]+?)[\s\t]{1,}(\d+)[\s\t]{1,}[€$]?([\d.,]+)[\s\t]{1,}[€$]?([\d.,]+)$',
+                    # Pattern with stricter whitespace matching
+                    r'^([A-Za-z0-9\s\-\(\)/&]+)\s+(\d+)\s+[€$]?([\d.,]+)\s+[€$]?([\d.,]+)$',
+                    # Extra pattern for tighter matching
+                    r'^(.*?)\s{2,}(\d+)\s{2,}[€$]?([\d.,]+)\s{2,}[€$]?([\d.,]+)$'
                 ]
                 
+                matched = False
                 for pattern in patterns:
                     match = re.search(pattern, line)
                     if match:
@@ -153,13 +269,18 @@ def parse_invoice_text(text, vendor_classifier=None):
                         new_item = {
                             "description": item.strip(),
                             "quantity": int(qty),
-                            "unit_price": float(price.replace(',', '')),
-                            "total": float(total.replace(',', ''))
+                            "unit_price": float(price.replace(',', '.')),  # Handle European decimal format
+                            "total": float(total.replace(',', '.'))  # Handle European decimal format
                         }
                         result["items"].append(new_item)
                         app_logger.debug(f"Extracted item: {new_item['description']}, quantity: {new_item['quantity']}, price: {new_item['unit_price']}, total: {new_item['total']}")
+                        matched = True
                         break
-            
+                
+                # If no pattern matched, log the line for debugging
+                if not matched and line.strip():
+                    app_logger.warning(f"Could not extract item from line: '{line}'")
+
             app_logger.info(f"Extracted {len(result['items'])} line items")
         else:
             app_logger.debug("No item table header found")
