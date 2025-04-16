@@ -1,0 +1,27 @@
+2025-04-15 15:08:04,937 - invoice_processor - INFO - Starting Intelligent Invoice Processor
+2025-04-15 15:08:04,937 - invoice_processor - INFO - Initializing application
+2025-04-15 15:08:04,938 - invoice_processor - INFO - Database initialized successfully
+2025-04-15 15:08:04,938 - invoice_processor - INFO - Loading vendor classifier model from E:\Shoban-NCI\VS_Code_WS\IAPA\CA\intelligent_invoice_processor\invoice_processor\data\models\vendor_classifier.pkl
+2025-04-15 15:08:04,964 - invoice_processor - INFO - Vendor classification model loaded successfully
+2025-04-15 15:08:05,324 - invoice_processor - INFO - Starting main application loop
+2025-04-15 15:08:48,986 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-15 15:08:52,412 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-15 15:08:52,413 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-15 15:08:55,022 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-15 15:08:55,043 - invoice_processor - ERROR - Error extracting items: could not convert string to float: '1.050.00'
+2025-04-15 15:08:55,045 - invoice_processor - WARNING - Validation: Date 03/29/2024 seems unusual
+2025-04-15 15:08:55,045 - invoice_processor - INFO - Overall confidence score: 0.48
+2025-04-15 15:08:55,046 - invoice_processor - INFO - Invoice status: Manual Processing Required
+2025-04-15 15:08:55,047 - invoice_processor - INFO - Invoice processed successfully. Status: Manual Processing Required
+2025-04-15 15:09:11,952 - invoice_processor - INFO - Saving invoice to database
+2025-04-15 15:09:11,953 - invoice_processor - INFO - Saving invoice to database
+2025-04-15 15:09:12,021 - invoice_processor - WARNING - Invoice INV123456 already exists in database
+2025-04-15 15:09:12,022 - invoice_processor - INFO - Updated existing invoice record: INV123456
+2025-04-15 15:09:12,042 - invoice_processor - INFO - Invoice saved successfully
+2025-04-15 15:09:12,067 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-15 15:09:17,693 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-15 15:09:49,763 - invoice_processor - INFO - Viewing invoice details: INV123456
+2025-04-15 15:10:50,180 - invoice_processor - INFO - Generating analytics visualizations
+2025-04-15 15:10:50,925 - invoice_processor - INFO - Analytics generated successfully
+2025-04-15 15:13:24,351 - invoice_processor - INFO - Application closing
+2025-04-15 15:13:24,449 - invoice_processor - INFO - Application closed

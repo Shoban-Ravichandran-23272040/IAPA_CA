@@ -1,0 +1,107 @@
+2025-04-16 15:26:52,120 - invoice_processor - INFO - Starting Intelligent Invoice Processor
+2025-04-16 15:26:52,120 - invoice_processor - INFO - Initializing application
+2025-04-16 15:26:52,121 - invoice_processor - INFO - Database initialized successfully
+2025-04-16 15:26:52,121 - invoice_processor - INFO - Loading vendor classifier model from E:\Shoban-NCI\VS_Code_WS\IAPA\CA\intelligent_invoice_processor\invoice_processor\data\models\vendor_classifier.pkl
+2025-04-16 15:26:52,163 - invoice_processor - INFO - Vendor classification model loaded successfully
+2025-04-16 15:26:52,421 - invoice_processor - INFO - Starting main application loop
+2025-04-16 15:29:18,785 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-16 15:29:47,940 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-2.pdf
+2025-04-16 15:29:49,641 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-2.pdf
+2025-04-16 15:29:49,642 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-2.pdf
+2025-04-16 15:29:52,891 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:29:52,915 - invoice_processor - INFO - Extracted 5 line items
+2025-04-16 15:29:52,918 - invoice_processor - WARNING - Validation: Date 04/15/2024 seems unusual
+2025-04-16 15:29:52,919 - invoice_processor - INFO - Overall confidence score: 0.72
+2025-04-16 15:29:52,919 - invoice_processor - INFO - Invoice status: Needs Review
+2025-04-16 15:29:52,921 - invoice_processor - INFO - Invoice processed successfully. Status: Needs Review
+2025-04-16 15:30:04,502 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:30:08,690 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:30:08,691 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:30:10,767 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:30:10,785 - invoice_processor - INFO - Overall confidence score: 0.97
+2025-04-16 15:30:10,786 - invoice_processor - INFO - Invoice status: Auto-Approved
+2025-04-16 15:30:10,786 - invoice_processor - INFO - Invoice processed successfully. Status: Auto-Approved
+2025-04-16 15:30:28,425 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-4.pdf
+2025-04-16 15:30:31,178 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-4.pdf
+2025-04-16 15:30:31,178 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-4.pdf
+2025-04-16 15:30:33,694 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:30:33,714 - invoice_processor - INFO - Overall confidence score: 0.97
+2025-04-16 15:30:33,715 - invoice_processor - INFO - Invoice status: Auto-Approved
+2025-04-16 15:30:33,715 - invoice_processor - INFO - Invoice processed successfully. Status: Auto-Approved
+2025-04-16 15:30:45,284 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-16 15:30:48,108 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-16 15:30:48,108 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-1.pdf
+2025-04-16 15:30:49,707 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:30:49,727 - invoice_processor - ERROR - Error extracting items: could not convert string to float: '1.050.00'
+2025-04-16 15:30:49,728 - invoice_processor - WARNING - Validation: Date 03/29/2024 seems unusual
+2025-04-16 15:30:49,728 - invoice_processor - INFO - Overall confidence score: 0.48
+2025-04-16 15:30:49,728 - invoice_processor - INFO - Invoice status: Manual Processing Required
+2025-04-16 15:30:49,729 - invoice_processor - INFO - Invoice processed successfully. Status: Manual Processing Required
+2025-04-16 15:32:17,710 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-16 15:45:14,487 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:45:17,535 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:45:17,536 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:45:19,551 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:45:19,569 - invoice_processor - WARNING - Validation: Date 03/29/2024 seems unusual
+2025-04-16 15:45:19,569 - invoice_processor - INFO - Overall confidence score: 0.59
+2025-04-16 15:45:19,569 - invoice_processor - INFO - Invoice status: Manual Processing Required
+2025-04-16 15:45:19,570 - invoice_processor - INFO - Invoice processed successfully. Status: Manual Processing Required
+2025-04-16 15:49:20,628 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:49:25,591 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:49:25,591 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:49:28,106 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:49:28,125 - invoice_processor - WARNING - Validation: Date 03/29/2024 seems unusual
+2025-04-16 15:49:28,125 - invoice_processor - INFO - Overall confidence score: 0.54
+2025-04-16 15:49:28,125 - invoice_processor - INFO - Invoice status: Manual Processing Required
+2025-04-16 15:49:28,125 - invoice_processor - INFO - Invoice processed successfully. Status: Manual Processing Required
+2025-04-16 15:52:36,752 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:52:40,045 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:52:40,045 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:52:41,503 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:52:41,521 - invoice_processor - INFO - Extracted 2 line items
+2025-04-16 15:52:41,521 - invoice_processor - WARNING - Validation: Date 03/29/2024 seems unusual
+2025-04-16 15:52:41,521 - invoice_processor - INFO - Overall confidence score: 0.69
+2025-04-16 15:52:41,522 - invoice_processor - INFO - Invoice status: Needs Review
+2025-04-16 15:52:41,522 - invoice_processor - INFO - Invoice processed successfully. Status: Needs Review
+2025-04-16 15:53:37,581 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:53:40,520 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:53:40,521 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-3.pdf
+2025-04-16 15:53:42,526 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:53:42,543 - invoice_processor - INFO - Overall confidence score: 0.97
+2025-04-16 15:53:42,544 - invoice_processor - INFO - Invoice status: Auto-Approved
+2025-04-16 15:53:42,544 - invoice_processor - INFO - Invoice processed successfully. Status: Auto-Approved
+2025-04-16 15:55:23,627 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:55:27,308 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:55:27,308 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:55:28,799 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:55:28,816 - invoice_processor - INFO - Extracted 2 line items
+2025-04-16 15:55:28,817 - invoice_processor - INFO - Overall confidence score: 0.86
+2025-04-16 15:55:28,817 - invoice_processor - INFO - Invoice status: Auto-Approved
+2025-04-16 15:55:28,817 - invoice_processor - INFO - Invoice processed successfully. Status: Auto-Approved
+2025-04-16 15:57:22,115 - invoice_processor - INFO - Application closing
+2025-04-16 15:57:22,162 - invoice_processor - INFO - Application closed
+2025-04-16 15:57:44,818 - invoice_processor - INFO - Starting Intelligent Invoice Processor
+2025-04-16 15:57:44,819 - invoice_processor - INFO - Initializing application
+2025-04-16 15:57:44,819 - invoice_processor - INFO - Database initialized successfully
+2025-04-16 15:57:44,820 - invoice_processor - INFO - Loading vendor classifier model from E:\Shoban-NCI\VS_Code_WS\IAPA\CA\intelligent_invoice_processor\invoice_processor\data\models\vendor_classifier.pkl
+2025-04-16 15:57:44,826 - invoice_processor - INFO - Vendor classification model loaded successfully
+2025-04-16 15:57:45,016 - invoice_processor - INFO - Starting main application loop
+2025-04-16 15:59:14,816 - invoice_processor - INFO - Selected invoice PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:59:23,693 - invoice_processor - INFO - Processing invoice: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:59:23,694 - invoice_processor - INFO - Extracting text from PDF: E:/Shoban-NCI/VS_Code_WS/IAPA/CA/intelligent_invoice_processor/Sample_invoices/sample-invoice-5.pdf
+2025-04-16 15:59:25,193 - invoice_processor - INFO - Parsing invoice text and extracting data
+2025-04-16 15:59:25,216 - invoice_processor - INFO - Extracted 2 line items
+2025-04-16 15:59:25,218 - invoice_processor - INFO - Overall confidence score: 0.86
+2025-04-16 15:59:25,218 - invoice_processor - INFO - Invoice status: Auto-Approved
+2025-04-16 15:59:25,219 - invoice_processor - INFO - Invoice processed successfully. Status: Auto-Approved
+2025-04-16 16:00:23,411 - invoice_processor - INFO - Saving invoice to database
+2025-04-16 16:00:23,412 - invoice_processor - INFO - Saving invoice to database
+2025-04-16 16:00:23,417 - invoice_processor - WARNING - Invoice INV123456 already exists in database
+2025-04-16 16:00:23,418 - invoice_processor - INFO - Updated existing invoice record: INV123456
+2025-04-16 16:00:23,468 - invoice_processor - INFO - Invoice saved successfully
+2025-04-16 16:00:23,488 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-16 16:00:30,894 - invoice_processor - INFO - Loaded 5 invoices from database
+2025-04-16 16:00:51,135 - invoice_processor - INFO - Generating analytics visualizations
+2025-04-16 16:00:51,815 - invoice_processor - INFO - Analytics generated successfully
+2025-04-16 16:51:53,648 - invoice_processor - INFO - Application closing
+2025-04-16 16:51:53,725 - invoice_processor - INFO - Application closed
